@@ -1,0 +1,14 @@
+{
+  "desktop": {
+    "fatal": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/\nCall log:\n  - navigating to \"http://127.0.0.1:8765/\", waiting until \"domcontentloaded\"\n"
+  },
+  "tablet": {
+    "fatal": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/\nCall log:\n  - navigating to \"http://127.0.0.1:8765/\", waiting until \"domcontentloaded\"\n"
+  },
+  "mobile": {
+    "fatal": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/\nCall log:\n  - navigating to \"http://127.0.0.1:8765/\", waiting until \"domcontentloaded\"\n"
+  },
+  "small-mobile": {
+    "fatal": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/\nCall log:\n  - navigating to \"http://127.0.0.1:8765/\", waiting until \"domcontentloaded\"\n"
+  }
+}
