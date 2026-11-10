@@ -1,0 +1,27 @@
+PAROGLUMEDIA — GITHUB PAGES PROJE DEPOSU
+
+Hedef: https://github.com/paroglu/paroglumedia.co
+
+Paketin icindeki DOSYALARI ZIP'ten cikarip GitHub deposunun kokune yerlestirin:
+  index.html
+  media/hero-desktop.mp4
+  media/hero-mobile.mp4
+  konserler/media/ (fotograflar, videolar ve gercek kareler)
+  og-preview.jpg
+  robots.txt
+  sitemap.xml
+  .nojekyll
+
+ONEMLI: index.html dosyasi /konserler/ altina degil deponun en ustune gelmeli.
+Mevcut depoda dosyalar varsa once bir yedek alin. ZIP'i dogrudan depoya koymak siteyi yayinlamaz.
+GitHub Settings > Pages > Deploy from a branch > main / (root) ayarlarini kontrol edin.
+Proje deposunun varsayilan Pages URL'si (etkinse): https://paroglu.github.io/paroglumedia.co/
+Ozel alan adi ayarlanmamis veya teyit edilmemistir.
+
+Bu paket mevcut V15 12 sahne ile konser alanini tek ana sayfada bir araya getirir.
+Ilk acilis videolari, konser fotograf ve videolari ayri dosyalardir.
+Yeni cekilecek 15-20 sn sinematik showreel HENUZ yoktur, onceki video gecici olarak kullanilir.
+AI gercek servis baglantisi olmadan demo/yonlendirme ozelligiyle sinirlidir.
+Konser yayin haklarini yayin oncesi kontrol edin.
+
+Site dosyalari yerel tarayicida test edilmistir; Safari ve canli GitHub yayininda test gereklidir.

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://paroglu.github.io/paroglumedia.co/sitemap.xml
