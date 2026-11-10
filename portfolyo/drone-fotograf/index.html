@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#09090f"><meta name="description" content="ParogluMedia Drone &amp; Fotoğrafçılık portföyü. Gerçek proje ve çalışmalar."><title>Drone &amp; Fotoğrafçılık | ParogluMedia Portföy</title><style>
+:root{color-scheme:dark;--bg:#09090f;--panel:#13111c;--purple:#8a5cff;--muted:#a9a4b6;--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f7f5fd;font-family:Inter,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid #d1bbff;outline-offset:4px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 78% 9%,rgba(103,54,180,.17),transparent 36%),radial-gradient(circle at 5% 69%,rgba(95,40,165,.10),transparent 42%)}
+.page{max-width:1400px;margin:auto;padding:0 clamp(20px,5vw,80px);position:relative;z-index:1}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;height:108px;border-bottom:1px solid var(--line)}
+.wordmark{font-size:23px;font-weight:820;line-height:.8;letter-spacing:-.09em;display:inline-flex;flex-direction:column}.wordmark span:last-child{color:#9d77fd}
+.links{display:flex;align-items:center;gap:24px}.back{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:#dbd6e8}.back:hover{color:white}
+.top-cta{border:1px solid #614a8f;border-radius:99px;padding:13px 17px;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;transition:background .25s}.top-cta:hover{background:#5b2bc2}
+.hero{padding:clamp(80px,10vw,150px) 0 clamp(65px,7vw,100px);border-bottom:1px solid var(--line);position:relative}
+.eyebrow{color:#b598ff;font-size:11px;font-weight:750;letter-spacing:.24em;text-transform:uppercase}
+h1{font-size:clamp(54px,8vw,132px);line-height:.91;letter-spacing:-.085em;font-weight:800;margin:27px 0 26px;max-width:1110px}h1 .thin{font-weight:200;color:#bdb7ca}
+.hero p{color:#b8b3c4;font-size:clamp(14px,1.3vw,18px);line-height:1.8;max-width:680px}.under{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:55px;color:#a89fb8;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.content{padding-top:48px;padding-bottom:120px}.filter-caption{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:24px}.filter-caption h2{font-size:clamp(25px,3vw,41px);letter-spacing:-.05em;margin:0}.filter-caption p{font-size:12px;line-height:1.6;color:var(--muted);max-width:350px;margin:0}
+.switch{display:inline-flex;background:#1b1627;border:1px solid #3c3050;border-radius:99px;padding:5px;margin:0 0 26px;gap:5px}.switch button{padding:13px 25px;border:0;border-radius:90px;color:#cabfdd;background:transparent;font-size:12px;font-weight:750}.switch button[aria-selected=true]{background:#7447e6;color:white;box-shadow:0 4px 24px #7e48eb44}
+.filters{display:flex;gap:9px;flex-wrap:wrap;padding:0 0 32px;border-bottom:1px solid var(--line)}.filters button{border:1px solid #3a3347;background:#191521;color:#bdb6cb;border-radius:100px;padding:12px 17px;font-size:12px;transition:all .2s}.filters button:hover{border-color:#9981c8;color:white}.filters button.active{color:#fff;background:#7649d9;border-color:#7649d9}.filters button .number{font-size:10px;color:#bab0c9;margin-left:7px}.filters button.active .number{color:#efe7ff}.filters button[disabled]{opacity:.55;cursor:default}
+.section-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:26px 0;font-size:11px;letter-spacing:.18em;color:#aaa2b8;text-transform:uppercase}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;min-height:340px}.project{background:#15121e;border:1px solid #322b3e;border-radius:15px;overflow:hidden;text-align:left;color:white;padding:0;transition:transform .33s,box-shadow .33s,border-color .33s;width:100%;display:block}.project:hover{transform:translateY(-6px);border-color:#8c6ed0;box-shadow:0 20px 65px #0008}.visual{position:relative;overflow:hidden;background:#282235;aspect-ratio:4 / 5}.project.video .visual{aspect-ratio:9 / 13}.visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}.project:hover img{transform:scale(1.04)}.play{position:absolute;bottom:20px;right:20px;border:1px solid #ffffffa8;background:#0009;backdrop-filter:blur(15px);width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:20px}.project .details{padding:19px 21px 23px}.project .tag{color:#ae90f6;font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:750}.project h3{font-size:clamp(19px,2.2vw,28px);font-weight:720;letter-spacing:-.045em;margin:10px 0 5px}.project p{color:#a9a2b8;font-size:12px;line-height:1.5;margin:0}
+.empty[hidden],.gallery[hidden]{display:none!important}.empty{background:linear-gradient(120deg,#191421,#0d0c13);border:1px solid #372848;border-radius:17px;min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:34px;margin-top:4px}.empty h3{font-size:28px;letter-spacing:-.045em;margin:8px 0}.empty p{max-width:410px;line-height:1.6;color:#b8b0c7;font-size:14px}.empty a{color:#cbb4ff;text-decoration:underline;text-underline-offset:4px}
+.contact{display:flex;align-items:center;justify-content:space-between;gap:28px;border-top:1px solid var(--line);padding:65px 0 95px}.contact h2{font-size:clamp(32px,4vw,58px);letter-spacing:-.06em;margin:11px 0}.contact p{font-size:14px;color:var(--muted)}.contact a{background:#7748e7;padding:20px 27px;border-radius:100px;font-weight:750;font-size:12px;letter-spacing:.1em;white-space:nowrap}.contact a:hover{background:#9f7aff}.foot{padding:24px 0 45px;display:flex;justify-content:space-between;border-top:1px solid var(--line);font-size:11px;color:#8d849c;gap:18px}
+.dialog{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);backdrop-filter:blur(8px);display:none;flex-direction:column}.dialog.open{display:flex}.dialog-bar{padding:18px clamp(15px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #4d4264}.dialog-bar span{font-size:12px;color:#d1c6e0;letter-spacing:.12em}.close,.arrow{color:#fff;background:#241b32;border:1px solid #655080;border-radius:60px;padding:12px 17px}.close:hover,.arrow:hover{background:#663eb0}.dialog-content{min-height:0;flex:1;display:grid;place-items:center;padding:25px 20px;overflow:auto}.dialog-content img{display:block;max-width:95vw;max-height:72vh;object-fit:contain;border-radius:6px}.dialog-content video{display:block;width:min(90vw,540px);max-height:70vh;background:black;border-radius:8px}.dialog-controls{display:flex;justify-content:center;gap:14px;align-items:center;padding:13px;color:#bdb1cd}.dialog-controls button{padding:9px 16px}
+@media(max-width:970px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.topbar{height:80px}.wordmark{font-size:20px}.links{gap:13px}.back{letter-spacing:.05em;font-size:10px}.top-cta{display:none}.hero{padding:64px 0 60px}.hero h1{font-size:clamp(47px,11.5vw,75px)}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.project .details{padding:13px}.project h3{font-size:18px}.project .tag,.project p{font-size:10px}.filters button{padding:10px 12px;font-size:11px}.filter-caption{display:block}.filter-caption p{margin-top:8px}.content{padding:40px 0 80px}.contact{display:block;padding:48px 0 60px}.contact a{display:inline-block;margin-top:14px}.section-meta{font-size:9px}.dialog-content video{width:min(92vw,520px)}.dialog-bar span{font-size:10px}}
+@media(max-width:360px){.gallery{grid-template-columns:1fr}.hero h1{font-size:49px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body><div class="grain" aria-hidden="true"></div><div class="page">
+<header class="topbar"><a href="../../" class="wordmark" aria-label="ParogluMedia ana sayfaya dön"><span>paroglu</span><span>media</span></a><nav class="links" aria-label="Portföy navigasyonu"><a class="back" href="../../#hizmetler">← Tüm Hizmetler</a><a class="top-cta" href="../../#teklif">PROJEMİ ANLAT ↗</a></nav></header>
+<main><section class="hero"><span class="eyebrow">04 / VISUAL STORIES / PAROGLUMEDIA</span><h1>Drone &amp; Fotoğrafçılık<span class="thin">.</span></h1><p>Her açı yeni bir hikâye.<br>Gerçek konser fotoğrafçılığı çalışmaların ve ileride eklenecek drone çekimleri için iki ayrı, düzenli portföy alanı.</p><div class="under"><span>GERÇEK ÇALIŞMALAR / SEÇİLİ PORTFÖY</span><span>KEŞFETMEK İÇİN KAYDIR ↓</span></div></section>
+<section class="content" aria-labelledby="category-heading"><div class="filter-caption"><h2 id="category-heading">Kategorileri keşfet.</h2><p>Kategoriye göre çalışmalarını filtrele. Henüz eklenmemiş kategoriler, gerçek projeler geldikçe açılacak.</p></div><div class="switch" role="tablist" aria-label="Çekim türü"><button data-group="drone" role="tab" aria-selected="false">Drone Çekimleri</button><button data-group="fotograf" role="tab" aria-selected="false">Fotoğrafçılık</button></div><div class="filters" id="filters" role="group" aria-label="Portföy kategorileri"></div><div class="section-meta"><span id="work-count" aria-live="polite"></span><span>ORİJİNAL FOTOĞRAF & VİDEO</span></div><div class="gallery" id="gallery"></div><div class="empty" id="empty" hidden><span class="eyebrow">PAROGLUMEDIA / YAKINDA</span><h3>Bu bölüm hazırlanıyor.</h3><p>Bu kategoride henüz yayınlanmış bir çalışma bulunmuyor. Gerçek projeler eklendiğinde burada görüntülenecek.</p><a href="../../#teklif">Yeni bir proje konuşalım ↗</a></div></section></main>
+<section class="contact"><div><span class="eyebrow">LET'S CREATE SOMETHING MEMORABLE</span><h2>Bir fikrin mi var?</h2><p>Birlikte hatırlanan işler üretelim.</p></div><a href="../../#teklif">PROJEMİ ANLAT ↗</a></section>
+<footer class="foot"><span>© 2026 PAROGLUMEDIA</span><span>GÖRÜNEN DEĞİL, HATIRLANAN İŞLER.</span></footer></div>
+<div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-label="Portföy medya oynatıcısı"><div class="dialog-bar"><span id="dialog-heading"></span><button class="close" id="dialog-close" type="button" aria-label="Görseli veya videoyu kapat">KAPAT ✕</button></div><div class="dialog-content" id="dialog-content"></div><div class="dialog-controls" id="dialog-controls"></div></div>
+<script>
+const data = [{"id": "gokhan-turkmen", "name": "Gökhan Türkmen", "type": "album", "poster": "../../konserler/media/concert-gokhan-turkmen-01.jpg", "images": ["../../konserler/media/concert-gokhan-turkmen-01.jpg", "../../konserler/media/concert-gokhan-turkmen-02.jpg", "../../konserler/media/concert-gokhan-turkmen-03.jpg", "../../konserler/media/concert-gokhan-turkmen-04.jpg", "../../konserler/media/concert-gokhan-turkmen-05.jpg", "../../konserler/media/concert-gokhan-turkmen-06.jpg", "../../konserler/media/concert-gokhan-turkmen-07.jpg", "../../konserler/media/concert-gokhan-turkmen-08.jpg", "../../konserler/media/concert-gokhan-turkmen-09.jpg", "../../konserler/media/concert-gokhan-turkmen-10.jpg"], "cat": ["portre-etkinlik"], "sub": "Konser Fotoğrafçılığı / Gerçek Kareler"}, {"id": "sefo", "name": "Sefo", "type": "album", "poster": "../../konserler/media/concert-sefo-01.jpg", "images": ["../../konserler/media/concert-sefo-01.jpg", "../../konserler/media/concert-sefo-02.jpg", "../../konserler/media/concert-sefo-03.jpg", "../../konserler/media/concert-sefo-04.jpg", "../../konserler/media/concert-sefo-05.jpg", "../../konserler/media/concert-sefo-06.jpg", "../../konserler/media/concert-sefo-07.jpg", "../../konserler/media/concert-sefo-08.jpg", "../../konserler/media/concert-sefo-09.jpg", "../../konserler/media/concert-sefo-10.jpg"], "cat": ["portre-etkinlik"], "sub": "Konser Fotoğrafçılığı / Gerçek Kareler"}, {"id": "hakan-peker", "name": "Hakan Peker", "type": "album", "poster": "../../konserler/media/concert-hakan-peker-01.jpg", "images": ["../../konserler/media/concert-hakan-peker-01.jpg", "../../konserler/media/concert-hakan-peker-02.jpg", "../../konserler/media/concert-hakan-peker-03.jpg", "../../konserler/media/concert-hakan-peker-04.jpg", "../../konserler/media/concert-hakan-peker-05.jpg", "../../konserler/media/concert-hakan-peker-06.jpg", "../../konserler/media/concert-hakan-peker-07.jpg", "../../konserler/media/concert-hakan-peker-08.jpg", "../../konserler/media/concert-hakan-peker-09.jpg", "../../konserler/media/concert-hakan-peker-10.jpg"], "cat": ["portre-etkinlik"], "sub": "Konser Fotoğrafçılığı / Gerçek Kareler"}];
+const cats = [];
+const groups = {"drone": [["emlak", "Emlak & Mimari"], ["insaat", "İnşaat & Sanayi"], ["turizm", "Turizm & Doğa"], ["etkinlik", "Etkinlik & Organizasyon"]], "fotograf": [["urun", "Ürün & Gastronomi"], ["mekan", "Mekân & İşletme"], ["portre-etkinlik", "Portre & Etkinlik"], ["emlak-photo", "Emlak & Mimari"]]};
+let currentGroup=groups ? (data.length ? 'fotograf':'drone') : null;
+let filter='hepsi', activeItem=null, imageIndex=0;
+const gallery=document.getElementById('gallery');
+const filters=document.getElementById('filters');
+const count=document.getElementById('work-count');
+const empty=document.getElementById('empty');
+const modal=document.getElementById('dialog');
+const content=document.getElementById('dialog-content');
+const heading=document.getElementById('dialog-heading');
+const controls=document.getElementById('dialog-controls');
+const safe=(s)=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+function currentItems(){return data.filter(i=>!groups || (currentGroup==='fotograf' ? ['album','image'].includes(i.type) : i.cat.some(c=>['emlak','insaat','turizm','etkinlik'].includes(c))))}
+function options(){return groups?groups[currentGroup]:cats}
+function renderFilters(){
+ const arr=currentItems();const list=options();
+ filters.innerHTML=`<button data-cat="hepsi" class="${filter==='hepsi'?'active':''}" aria-pressed="${filter==='hepsi'}">Tümü <span class="number">${arr.length}</span></button>`+list.map(([id,name])=>{
+   const n=arr.filter(i=>i.cat.includes(id)).length;
+   return `<button data-cat="${safe(id)}" class="${filter===id?'active':''}" aria-pressed="${filter===id}" ${n===0?'disabled title="Bu kategoriye henüz çalışma eklenmedi"':''}>${safe(name)}<span class="number">${n||'—'}</span></button>`;
+ }).join('');
+ filters.querySelectorAll('button:not([disabled])').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.cat;renderFilters();renderGallery()}));
+}
+function renderGallery(){
+ const arr=currentItems().filter(i=>filter==='hepsi'||i.cat.includes(filter));
+ count.textContent=arr.length ? `${arr.length} SEÇİLİ PROJE` : 'YENİ ÇALIŞMALAR EKLENECEK';
+ gallery.replaceChildren();
+ empty.hidden=!!arr.length;gallery.hidden=!arr.length;
+ arr.forEach(i=>{
+   const btn=document.createElement('button');btn.type='button';btn.className='project '+(i.type==='video'?'video':'');
+   btn.setAttribute('aria-label',i.name+' çalışmasını aç');
+   btn.innerHTML=`<div class="visual"><img src="${safe(i.poster)}" alt="${safe(i.name)} — gerçek portföy görüntüsü" loading="lazy"><span class="play" aria-hidden="true">${i.type==='video'?'▶':i.type==='album'?'＋':'↗'}</span></div><div class="details"><span class="tag">${safe(i.sub)}</span><h3>${safe(i.name)}</h3><p>${i.type==='video'?'Videoyu oynat →':i.type==='album'?'Fotoğraf serisini incele →':'Tasarıma yakından bak →'}</p></div>`;
+   btn.addEventListener('click',()=>openItem(i));gallery.appendChild(btn);
+ });
+}
+function openItem(i){activeItem=i;imageIndex=0;modal.classList.add('open');document.body.classList.add('lock');heading.textContent=i.name;paintModal();document.getElementById('dialog-close').focus()}
+function paintModal(){
+ content.replaceChildren();controls.replaceChildren();
+ if(!activeItem)return;
+ if(activeItem.type==='video'){
+   const v=document.createElement('video');v.controls=true;v.playsInline=true;v.preload='metadata';v.poster=activeItem.poster;v.src=activeItem.src;content.appendChild(v);
+   const c=document.createElement('span');c.textContent='Gerçek konser prodüksiyonu · Dikey video';controls.appendChild(c);
+ }else{
+   const imgs=activeItem.images||[activeItem.src];const img=document.createElement('img');img.src=imgs[imageIndex];img.alt=activeItem.name+' fotoğraf '+(imageIndex+1);content.appendChild(img);
+   if(imgs.length>1){
+    const prev=document.createElement('button');prev.className='arrow';prev.type='button';prev.textContent='← Önceki';prev.addEventListener('click',()=>{imageIndex=(imageIndex+imgs.length-1)%imgs.length;paintModal()});controls.appendChild(prev);
+    const n=document.createElement('span');n.textContent=(imageIndex+1)+' / '+imgs.length;controls.appendChild(n);
+    const next=document.createElement('button');next.className='arrow';next.type='button';next.textContent='Sonraki →';next.addEventListener('click',()=>{imageIndex=(imageIndex+1)%imgs.length;paintModal()});controls.appendChild(next);
+   }
+ }
+}
+function closeModal(){const video=content.querySelector('video');if(video)video.pause();modal.classList.remove('open');document.body.classList.remove('lock');content.replaceChildren();activeItem=null}
+document.getElementById('dialog-close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(!modal.classList.contains('open'))return;if(e.key==='Escape')closeModal();if(activeItem&&activeItem.type==='album'){if(e.key==='ArrowRight'){imageIndex=(imageIndex+1)%activeItem.images.length;paintModal()}if(e.key==='ArrowLeft'){imageIndex=(imageIndex+activeItem.images.length-1)%activeItem.images.length;paintModal()}}});
+if(groups){
+ document.querySelectorAll('[data-group]').forEach(b=>b.addEventListener('click',()=>{
+  currentGroup=b.dataset.group;filter='hepsi';document.querySelectorAll('[data-group]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+  renderFilters();renderGallery();
+ }));
+ document.querySelector(`[data-group="${currentGroup}"]`).setAttribute('aria-selected','true');
+}
+renderFilters();renderGallery();
+</script></body></html>
