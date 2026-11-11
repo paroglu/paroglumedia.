@@ -1,4 +1,4 @@
-/* ParogluMedia — Hizmet kartlarının içinde canlı portföy v2.0
+/* ParogluMedia — Hizmet kartlarının içinde canlı portföy v2.1 — KEŞFET yönlendirme düzeltmesi
  * Mevcut pm-canli-portfoy.js dosyasının doğrudan yerine geçer.
  * Ana site #projeler ve animasyonları değişmez. Ayrı büyük portföy sahnesi OLUŞTURMAZ.
  * Supabase publishable key kasıtlı olarak istemcidedir; veri erişimini RLS belirler.
@@ -190,7 +190,23 @@ body.pmv2-zoom-open{overflow:hidden}
 `;document.head.append(style);
 }
 function onLinkClick(event){
- const a=event.target.closest?.('a[href*="portfolyo/"]');if(!a)return;
+ // The current live index.html uses href="#markalar" on every service-card KEŞFET button.
+ // Its older listener opens a text-only service dialog. Catch the click in capture phase
+ // and stop that legacy handler, WITHOUT changing index.html or any scroll animation.
+ const target=event.target instanceof Element?event.target:event.target?.parentElement;
+ const cta=target?.closest?.('.service-card .service-cta');
+ if(cta){
+  const card=cta.closest('.service-card');
+  const index=Number(card?.getAttribute('data-card'));
+  const item=panels.get(index);
+  if(Number.isInteger(index)&&item?.card===card){
+   event.preventDefault();event.stopImmediatePropagation();
+   openPanel(index,cta);
+   return;
+  }
+ }
+ // Retain legacy portfolyo/... links elsewhere in the homepage.
+ const a=target?.closest?.('a[href*="portfolyo/"]');if(!a)return;
  const href=(a.getAttribute('href')||'').toLowerCase();
  const index=href.includes('/grafik-tasarim/')?1:href.includes('/sosyal-medya/')?2:href.includes('/drone-fotograf/')?3:href.includes('/video/')?0:-1;
  if(index<0||!panels.has(index))return;
