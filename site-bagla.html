@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0a0711"><title>ParogluMedia | Güvenli Portföy Bağlantısı</title>
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0b0812;color:#f8f4ff}*{box-sizing:border-box}body{min-height:100vh;margin:0;padding:35px 18px;background:radial-gradient(ellipse at 60% 0%,#5a289048,transparent 57%),#0b0812}main{max-width:690px;margin:0 auto}.brand{line-height:.9;font-size:32px;font-weight:900;letter-spacing:-.07em;margin-bottom:50px}.brand b{display:block;color:#b07aff}h1{font-size:clamp(32px,6vw,52px);letter-spacing:-.055em;line-height:1.09;margin:10px 0 18px}.hint{color:#c0b2cf;font-size:14px;line-height:1.7}.eyebrow{color:#bf91fd;letter-spacing:.2em;font-weight:750;font-size:11px}section{margin-top:31px;padding:25px;border:1px solid #4a345e;background:#1b1326;border-radius:18px}.item{display:flex;align-items:start;gap:13px;margin:15px 0;font-size:14px;color:#d3c5e4}.num{color:#be8df9;font-size:12px;border:1px solid #8466a6;border-radius:50%;height:26px;width:26px;display:grid;place-items:center;flex:none}button{border:0;border-radius:11px;padding:15px 20px;font-size:14px;font-weight:750;background:linear-gradient(115deg,#995ef2,#6e36d4);color:white;cursor:pointer;width:100%;margin-top:22px}button:disabled{opacity:.5;cursor:wait}.muted{color:#9f8fb0;font-size:12px}#result{margin:18px 0 0;white-space:pre-wrap;overflow-wrap:break-word;font-size:14px;line-height:1.6}#result.success{color:#b3e2c8}#result.error{color:#ffb5c3}.tiny{font-family:ui-monospace,monospace;color:#b89cd8;font-size:12px}.back{margin-top:25px;display:inline-block;color:#bb9cef;font-size:13px}
+</style></head><body><main>
+<div class="brand">paroglu <b>media</b></div><div class="eyebrow">GÜVENLİ ENTEGRASYON / SADECE BİR SATIR</div><h1>Mevcut siteye<br>portföy bağlantısı ekle.</h1>
+<p class="hint">Bu araç yayındaki <b>gerçek index.html dosyanı</b> okur ve yalnızca kapanış <span class="tiny">&lt;/body&gt;</span> öncesine bir script bağlantısı ekleyerek yeni bir dosya indirir. Diğer HTML, CSS, video, animasyon veya logolara dokunmaz. Hiçbir şeyi otomatik olarak GitHub'a yüklemez.</p>
+<section><div class="item"><div class="num">1</div><div>Önce <b>portfoy.html</b> ve <b>pm-portfolio-bridge.js</b> dosyalarını GitHub deposunun ana dizinine yükle.</div></div><div class="item"><div class="num">2</div><div>İki dosya yayına alındıktan sonra aşağıdaki düğmeye bas. Araç, sitedeki mevcut <b>index.html</b> dosyasını temel alarak yeni <b>index.html</b> dosyasını indirecek.</div></div><div class="item"><div class="num">3</div><div>İndirilen dosyayı GitHub'a <b>index.html</b> adıyla yükle ve Commit changes yap. Eski dosya GitHub geçmişinde kalır.</div></div>
+<button id="run">Mevcut index.html'yi güvenli güncelle ve indir</button>
+<div id="result" role="status" aria-live="polite">Hazır. Ana siteye hiçbir değişiklik yapılmadı.</div>
+<p class="muted">Not: Tarayıcın dosyayı index(1).html gibi adlandırırsa GitHub'a yüklemeden önce adını tam olarak index.html olarak düzelt.</p></section>
+<a class="back" href="./portfoy.html">Portföy sayfasını görüntüle ↗</a>
+</main>
+<script>
+(()=>{
+'use strict';
+const run=document.getElementById('run'),result=document.getElementById('result');
+function status(s,cls=''){result.textContent=s;result.className=cls}
+async function checkAsset(name){const r=await fetch('./'+name+'?check='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(name+' yayına alınmamış (HTTP '+r.status+'). Önce GitHub\'a dosyayı yükle ve yayında olduğunu kontrol et.');const ct=r.headers.get('content-type')||'';if(!ct.includes('html')&&!ct.includes('javascript')&&!ct.includes('text'))throw Error(name+' yanıtı beklenen dosya değil.');return r}
+run.addEventListener('click',async()=>{
+run.disabled=true;status('Mevcut site ve yeni dosyalar kontrol ediliyor…');
+try{
+await Promise.all([checkAsset('portfoy.html'),checkAsset('pm-portfolio-bridge.js')]);
+const r=await fetch('./index.html?portfolio_patch='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('Mevcut index.html okunamadı: HTTP '+r.status);
+const original=await r.text();if(original.length<1000||!/<html[\s>]/i.test(original))throw Error('Yayındaki index.html beklenen HTML içeriği değil, işlem durduruldu.');
+if(original.includes('pm-portfolio-bridge.js')){status('Mevcut index.html zaten bağlanmış görünüyor. Aynı script ikinci kez eklenmeyecek.','success');return}
+const closeIndex=original.toLowerCase().lastIndexOf('</body>');if(closeIndex<0)throw Error('index.html içinde kapanış </body> bulunamadı. İşlem durduruldu.');
+const line='\n<!-- ParogluMedia canlı portföy bağlantısı — eklenen tek satır -->\n<script src="./pm-portfolio-bridge.js" defer><\/script>\n';
+const patched=original.slice(0,closeIndex)+line+original.slice(closeIndex);
+if(patched.length!==original.length+line.length||!patched.includes('pm-portfolio-bridge.js'))throw Error('Bütünlük kontrolü başarısız. İşlem durduruldu.');
+const blob=new Blob([patched],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='index.html';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+status('Hazır! Güncellenmiş index.html indirildi. Ana sitenin diğer satırları korunuyor. GitHub\'a yüklemeden önce dosya adının index.html olduğundan emin ol.\n\nOrijinal boyut: '+original.length.toLocaleString('tr-TR')+' karakter\nYeni boyut: '+patched.length.toLocaleString('tr-TR')+' karakter','success');
+}catch(e){status('İşlem durduruldu: '+String(e.message||e),'error')}finally{run.disabled=false}
+});
+})();
+</script></body></html>
