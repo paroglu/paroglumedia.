@@ -1,0 +1,23 @@
+PAROGLUMEDIA — MEVCUT ANA SİTEYE CANLI PORTFÖY
+
+Bu çözüm ayrı portfolyo sayfası oluşturmaz. Mevcut sitenin #projeler bölümünün altına Supabase projelerini ekler.
+
+ADIM 1: GitHub depo kök dizinine şu dosyaları yükleyin:
+  - pm-canli-portfoy.js
+  - ana-site-bagla.html (geçici kurulum aracı)
+
+ADIM 2: Yayından sonra https://paroglu.github.io/paroglumedia./ana-site-bagla.html adresini Safari'de açın.
+
+ADIM 3: “Mevcut sitemden index.html al ve güncelle” butonuna basın. Güncellenmiş index.html indirilecek.
+
+ADIM 4: iPad Dosyalar/İndirilenler klasöründeki index.html dosyasını GitHub'da mevcut index.html ile değiştirin; Commit changes.
+
+ADIM 5: Mevcut ana sitede #projeler bölümünü açın. Projeyi Admin'de Yayında yapın, görsel herkese açık alana taşınır ve aynı sayfada görüntülenir.
+
+ADIM 6: İşiniz bitince GitHub'dan ana-site-bagla.html dosyasını silebilirsiniz. pm-canli-portfoy.js kalmalıdır.
+
+UYARI: Kurulum aracı yayındaki en güncel HTML'i okur. GitHub'daki kod yayındaki koddan daha yeniyse, GitHub'daki index.html dosyasını indirip aracın ikinci yönteminde seçin.
+
+Gizli service role anahtarı kullanılmamıştır. Bu sistem Supabase RLS izinlerine bağlı, yalnızca yayımlanmış projeleri gösterir.
+
+Ana sayfanın önceki sürümüne GitHub Commit History üzerinden dönebilirsiniz.
