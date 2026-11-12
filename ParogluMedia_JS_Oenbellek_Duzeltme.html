@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ParogluMedia | KEŞFET Bağlantısı Düzeltme</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:32px 16px;background:radial-gradient(ellipse at 50% 0,#352049,#100d16 65%,#0a090d);color:#f7f2fa}
+main{max-width:760px;margin:0 auto;background:#1a1424;border:1px solid #564168;border-radius:24px;padding:clamp(23px,5vw,44px);box-shadow:0 24px 75px #0007}
+.logo{font-size:27px;font-weight:950;letter-spacing:-.075em;line-height:.85}.logo em{display:block;color:#b082ff;font-style:normal}.tag{display:block;font-size:11px;letter-spacing:.23em;color:#c9a5f3;font-weight:800;margin:33px 0 8px}
+h1{font-size:clamp(29px,6vw,49px);line-height:1.06;letter-spacing:-.055em;margin:5px 0 18px}
+p,li{line-height:1.62;color:#c8bfce}code{color:#e6ceff;font-size:.92em;overflow-wrap:anywhere}
+button{width:100%;background:linear-gradient(100deg,#a266f1,#7235d8);color:white;border:0;border-radius:14px;padding:16px 20px;font-size:15px;font-weight:800;margin:13px 0;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
+section{border:1px solid #584366;border-radius:15px;padding:15px 18px;margin:24px 0;background:#241b30}
+label{display:block;margin:20px 0 8px;font-size:14px;font-weight:700}input{max-width:100%;font-size:14px}
+#status{white-space:pre-wrap;line-height:1.7;font-size:13px;padding:15px 17px;border-radius:13px;border:1px solid #503c5e;background:#110c19;min-height:80px;color:#e2d3ed;margin-top:17px}
+small{display:block;color:#a8a0af;margin-top:19px;line-height:1.7}
+</style>
+</head>
+<body><main>
+<div class="logo">paroglu<em>media</em></div>
+<span class="tag">YALNIZCA BAĞLANTI ONARIM ARACI</span>
+<h1>KEŞFET bağlantısını yenile.</h1>
+<p>Bu araç mevcut ana sitenin yalnızca <code>pm-canli-portfoy.js</code> script adresine yeni sürüm numarası ekler. Site tasarımı, içerikler, animasyonlar ve diğer kodlar <b>aynen kalır.</b></p>
+<section>Ön koşul: <code>pm-canli-portfoy.js</code> dosyanın ilk satırında <strong>v2.1</strong> yazıyor olmalı. Bunu zaten kontrol ettik. Bu araç ikinci bir script eklemez.</section>
+<button id="remote" type="button">Mevcut sitemin index.html dosyasını güncelle</button>
+<label for="local">Alternatif: En güncel <code>index.html</code> dosyasını elle seç</label>
+<input id="local" type="file" accept=".html,text/html"><button id="manual" type="button">Seçtiğim dosyayı güncelle</button>
+<div id="status" role="status" aria-live="polite">Hazır. İşlem tarayıcında yapılır; GitHub dosyaların otomatik olarak değişmez.</div>
+<small>Güncel <code>index.html</code> indirilir. İndirdiğin dosyayı kontrol ettikten sonra GitHub'da aynı adlı dosyanın üzerine yükle. Var olan <code>pm-canli-portfoy.js</code> dosyasına ve admin paneline dokunma. Eski sürüme dönmek için GitHub commit geçmişini kullanabilirsin.</small>
+</main>
+<script>
+(()=>{'use strict';
+const byId=id=>document.getElementById(id),status=txt=>byId('status').textContent=txt;
+const fresh='20261112-v21';let busy=false;
+async function patch(html,source){
+ if(busy)return;busy=true;
+ byId('remote').disabled=byId('manual').disabled=true;
+ try{
+  if(typeof html!=='string'||html.length<2500||!/<html[\s>]/i.test(html)||!/<\/body>/i.test(html))throw Error('Dosya geçerli bir index.html gibi görünmüyor.');
+  if(!/id=["']hizmetler["']/i.test(html)||!/id=["']projeler["']/i.test(html))throw Error('Hizmetler/Projeler bölümleri bulunamadı, farklı dosya olabilir.');
+  const re=/<script\b([^>]*?)\bsrc\s*=\s*(["'])([^"']*pm-canli-portfoy\.js(?:\?[^"']*)?)\2([^>]*)>\s*<\/script>/ig;
+  const found=[...html.matchAll(re)];
+  if(found.length!==1)throw Error('Beklenen tek script etiketi bulunamadı: '+found.length+'. Orijinal dosyaya müdahale edilmedi.');
+  const before=found[0][3];
+  const newSrc=before.split('?')[0]+'?v='+fresh;
+  if(before===newSrc)throw Error('Bu dosya zaten '+fresh+' sürüm bağlantısını içeriyor. Tekrar değiştirilmedi.');
+  const patched=html.replace(re,(ent,beforeAttr,quote,url,afterAttr)=>'<script'+beforeAttr+'src='+quote+newSrc+quote+afterAttr+'></script>');
+  if(patched.length < html.length-250 || patched.length>html.length+250 || !patched.includes(newSrc))throw Error('Bütünlük kontrolü başarısız; dosya değiştirilmedi.');
+  const blob=new Blob([patched],{type:'text/html;charset=utf-8'});const obj=URL.createObjectURL(blob);const a=document.createElement('a');a.href=obj;a.download='index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(obj),60000);
+  status('GÜNCELLEME HAZIR!\nKaynak: '+source+'\nEski bağlantı: '+before+'\nYeni bağlantı: '+newSrc+'\nÖzgün boyut: '+html.length.toLocaleString('tr-TR')+' karakter\nYeni boyut: '+patched.length.toLocaleString('tr-TR')+' karakter\n\nYalnızca script adresi değişti. İndirilen index.html dosyasını GitHub ana dizinindeki mevcut index.html ile değiştir.');
+ }catch(err){status('DURDURULDU: '+String(err.message||err)+'\nHerhangi bir GitHub dosyası değiştirilmedi.');}
+ finally{busy=false;byId('remote').disabled=byId('manual').disabled=false;}
+}
+byId('remote').addEventListener('click',async()=>{
+ status('Güncel index.html okunuyor…');byId('remote').disabled=true;
+ try{const r=await fetch('./index.html?pm_fix='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const html=await r.text();await patch(html,'GitHub Pages — mevcut yayındaki ana site');}
+ catch(e){status('Otomatik okuma hatası: '+String(e.message||e)+'\nAlternatif olarak dosya seçebilirsin.');}
+ finally{byId('remote').disabled=false;}
+});
+byId('manual').addEventListener('click',async()=>{const f=byId('local').files?.[0];if(!f){status('Önce bir index.html dosyası seç.');return;}await patch(await f.text(),'Seçilen '+f.name);});
+})();
+</script></body></html>
